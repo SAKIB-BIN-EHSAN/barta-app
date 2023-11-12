@@ -1,0 +1,31 @@
+<?php
+
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Profile\ProfileController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/login', [AuthController::class, 'getLoginFormView']);
+Route::post('/user-login', [AuthController::class, 'login']);
+
+
+Route::get("/register", [AuthController::class, 'getRegisterFormView']);
+Route::post('/user-register', [AuthController::class, 'register']);
+
+Route::get("/profile",[ProfileController::class, 'getProfileView']);
+Route::get("/edit-profile", [ProfileController::class, 'getEditProfileFormView']);
+Route::post("/user-edit-profile", [ProfileController::class, 'editProfile']);
